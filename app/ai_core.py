@@ -9,14 +9,12 @@
 # Handle mitigation simulation (Δv, lead time → miss distance).
 
 # Key functions/classes:
-# def classify_threat(moid_au, diam_km, v_kms):
-#     """Returns categorical risk level based on distance and energy."""
-
-# def predict_effects(diam_km, v_kms, density, angle_deg):
-#     """Returns crater_diameter_km, blast_radius_km, and impact_energy_mt."""
-
-# def simulate_deflection(strategy, lead_years, delta_v_ms):
-#     """Estimates how much deflection is achieved and whether impact is avoided."""
+# def classify_threat(neo_row: dict) -> str:
+#     """Simple rule-based or ML classifier returning Low/Medium/High threat badge."""
+# def predict_effects(diam_km, v_kms, density_gcc, impact_angle_deg) -> dict:
+#     """Compute crater size, blast radius, seismic equivalent, and energy."""
+# def simulate_deflection(v_kms, lead_years, method='kinetic') -> dict:
+#     """Simulate miss distance change (Δv * lead_time) and return new trajectory outcome."""
 
 
 # Input: processed asteroid parameters

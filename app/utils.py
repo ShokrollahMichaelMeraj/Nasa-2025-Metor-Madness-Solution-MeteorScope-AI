@@ -26,4 +26,13 @@
 #     """Return estimated blast radius in km."""
 
 
+# def calc_mass(diam_km: float, density_gcc: float = 3.0) -> float:
+#     """Calculate asteroid mass in kg using volume * density."""
+# def calc_impact_energy(diam_km: float, v_kms: float, density_gcc: float = 3.0) -> float:
+#     """Compute kinetic energy of impact in Joules."""
+# def calc_crater_and_blast(E_joules: float) -> tuple[float, float]:
+#     """Estimate crater and blast radius using empirical scaling laws."""
+# def calc_orbit_points(a, e, i, omega, w, M0, num_points=200) -> np.ndarray:
+#     """Compute positions along an elliptical orbit for visualization."""
+
 # Used by: ai_core.py, tests/test_utils.py

@@ -1,6 +1,21 @@
 # config/settings.py
 # Centralized configuration and constants for MeteorScope AI
 
+# Constants & Global Configuration
+# Purpose:
+# Holds all constants and settings in one place.
+# Responsibilities:
+# Define file paths for data, models, and assets.
+# Set default values (density, API keys, Earth radius).
+# Define constants for physics or scaling.
+# Example:
+# DATA_PATH = "data/nasa_neo_sample.csv"
+# EARTH_RADIUS_KM = 6371
+# DEFAULT_DENSITY = 3000  # kg/m³
+# NASA_API_URL = "https://api.nasa.gov/neo/rest/v1/neo/browse"
+# NASA_API_KEY = "DEMO_KEY"
+
+
 from pathlib import Path
 
 # Base project directory (meteorscope-ai/)
