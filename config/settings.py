@@ -14,34 +14,51 @@
 # DEFAULT_DENSITY = 3000  # kg/m³
 # NASA_API_URL = "https://api.nasa.gov/neo/rest/v1/neo/browse"
 
-from dotenv import load_dotenv; load_dotenv()
 
+# config/settings.py
 import os
-
 from pathlib import Path
 
-# Create a free NASA API key: https://api.nasa.gov
-NASA_API_KEY = os.getenv("NASA_API_KEY", "DEMO_KEY")  # Replace later
+# --- NASA API key resolution: Streamlit Secrets -> env var -> .env -> DEMO ---
+NASA_API_KEY = None
+try:
+    import streamlit as st
+    NASA_API_KEY = st.secrets.get("NASA_API_KEY")
+except Exception:
+    pass
 
-# Path for offline NEO cache
-LOCAL_NEO_PATH = os.path.join("data", "nasa_neo_sample.csv")
+if not NASA_API_KEY:
+    NASA_API_KEY = os.getenv("NASA_API_KEY")
 
-# Base project directory (meteorscope-ai/)
+if not NASA_API_KEY:
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+        NASA_API_KEY = os.getenv("NASA_API_KEY")
+    except Exception:
+        pass
+
+if not NASA_API_KEY:
+    NASA_API_KEY = "DEMO_KEY"
+
+def key_prefix() -> str:
+    """Return a short, non-sensitive prefix used for debugging in the UI."""
+    return "DEMO" if NASA_API_KEY == "DEMO_KEY" else f"{NASA_API_KEY[:6]}…"
+
+# --- Paths ---
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Directory paths
 DATA_DIR = BASE_DIR / "data"
 MODELS_DIR = BASE_DIR / "models"
 ASSETS_DIR = BASE_DIR / "assets"
 
-# Data files
+# Files
+LOCAL_NEO_PATH = str(DATA_DIR / "nasa_neo_sample.csv")
 NASA_NEO_SAMPLE = DATA_DIR / "nasa_neo_sample.csv"
 POP_GRID_SAMPLE = DATA_DIR / "pop_grid_sample.csv"
 SYNTHETIC_IMPACTS = DATA_DIR / "synthetic_impacts.csv"
 
-# Model files
 THREAT_MODEL_PATH = MODELS_DIR / "threat_model.pkl"
 EFFECTS_MODEL_PATH = MODELS_DIR / "effects_model.pkl"
 
-# External NASA API (optional for later use)
+# External
 JPL_SBDB_URL = "https://ssd-api.jpl.nasa.gov/sbdb.api"
