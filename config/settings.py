@@ -13,10 +13,18 @@
 # EARTH_RADIUS_KM = 6371
 # DEFAULT_DENSITY = 3000  # kg/m³
 # NASA_API_URL = "https://api.nasa.gov/neo/rest/v1/neo/browse"
-# NASA_API_KEY = "DEMO_KEY"
 
+from dotenv import load_dotenv; load_dotenv()
+
+import os
 
 from pathlib import Path
+
+# Create a free NASA API key: https://api.nasa.gov
+NASA_API_KEY = os.getenv("NASA_API_KEY", "DEMO_KEY")  # Replace later
+
+# Path for offline NEO cache
+LOCAL_NEO_PATH = os.path.join("data", "nasa_neo_sample.csv")
 
 # Base project directory (meteorscope-ai/)
 BASE_DIR = Path(__file__).resolve().parent.parent
